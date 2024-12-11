@@ -542,7 +542,8 @@ private:
 			// here will cause the transfer to fail, see
 			// https://crbug.com/1489414. Use the most common limit of 4096
 			// bytes for now.
-			constexpr uint16_t MAX_CTRL_BUFFER_LENGTH = 4096;
+                        // srcejon changed to 255, see: https://github.com/libusb/libusb/issues/1493
+			constexpr uint16_t MAX_CTRL_BUFFER_LENGTH = 255;
 			auto result = co_await_try(
 				requestDescriptor(LIBUSB_DT_CONFIG, j, MAX_CTRL_BUFFER_LENGTH));
 			if (auto error = getTransferStatus(result)) {
